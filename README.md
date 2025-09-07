@@ -80,6 +80,9 @@ python server.py
 -Enter Room ID, Password, and Nickname.
 -Click Create Room (to make a new one) or Join Room (to enter an existing one).
 
+## 📝 License
+- This project is licensed under the MIT License - see the 'LICENSE' file for details.
+
 
 
 
