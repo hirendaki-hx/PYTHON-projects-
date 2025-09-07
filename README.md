@@ -46,26 +46,8 @@ It allows users to **create and join chat rooms** with passwords, while the serv
 ---
 ## 📁 Project Structure
 ```
-PHP-projects/
-│
-├── LICENSE
-├── README.md
-├── index.php
-├── AdminLogin.php
-├── adminD.php
-├── Register.php
-├── Game.php
-├── G_Letter.php
-├── logout.php
-│
-├── assets/          # (for images, CSS, JS files if you have any)
-│   ├── css/
-│   ├── js/
-│   └── images/
-│
-└── config/          # (optional - for database connection files, constants)
-    └── db.php
-
+- server.py
+- client.py
 ```
 
 ---
