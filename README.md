@@ -1,4 +1,4 @@
-# 🗨️ PyQt5 Chat Application
+# 🗨️ Python Chat Application
 
 A **client–server chat application** built with **Python sockets** and a modern **PyQt5 GUI**.  
 It allows users to **create and join chat rooms** with passwords, while the server admin can **manage rooms, kick users, and shut down the server**.
