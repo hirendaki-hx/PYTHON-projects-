@@ -45,5 +45,37 @@ It allows users to **create and join chat rooms** with passwords, while the serv
 
 ---
 
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/pyqt5-chat-app.git
+cd pyqt5-chat-app
+```
+### 2. Install Requirements
+```bash
+pip install pyqt5
+```
+### 3. Run the Server
+```bash
+python server.py
+```
+-Start the server from the GUI.
+-The default host and port are set in server.py:
+  HOST = '192.168.1.10'
+  PORT = 1111
+-Update these values if needed.
+
+### 4. Run the Client
+```bash
+-python client.py
+```
+-Enter Room ID, Password, and Nickname.
+-Click Create Room (to make a new one) or Join Room (to enter an existing one).
+
+
+
 
 
