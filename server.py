@@ -103,10 +103,16 @@ def accept_connections():
     global server_running
     while server_running:
         try:
+            # Set timeout to allow checking server_running flag
+            server.settimeout(1.0)
+            
             with server_socket_lock:
                 if not server_running:
                     break
-                client, addr = server.accept()
+                try:
+                    client, addr = server.accept()
+                except socket.timeout:
+                    continue  # Timeout occurred, check server_running again
             
             client.send("ROOM".encode('utf-8'))
             room_data = client.recv(1024).decode('utf-8')
@@ -141,6 +147,9 @@ def accept_connections():
             client.send("NICK".encode('utf-8'))
             threading.Thread(target=handle_client, args=(client, room_id)).start()
             server_signals.update_gui.emit() # Update GUI after room creation/join
+            
+        except socket.timeout:
+            continue
         except OSError as e:
             if server_running: # Only print error if server was supposed to be running
                 print(f"Server accept error: {e}")
@@ -352,7 +361,7 @@ class ChatServerGUI(QWidget):
                 QMessageBox.information(self, "Server Started", "Chat server is now running.")
             except Exception as e:
                 QMessageBox.critical(self, "Start Error", f"Failed to start server: {e}")
-                server_running = False # Ensure status is correct
+                server_running = False 
                 self.update_server_status_label()
 
 
@@ -365,7 +374,7 @@ class ChatServerGUI(QWidget):
             if reply == QMessageBox.Yes:
                 server_running = False
                 
-                # Notify all connected clients that server is shutting down
+               
                 all_clients = []
                 for room_id in list(rooms.keys()): # Iterate over a copy
                     for client in rooms[room_id]['clients']:
@@ -378,7 +387,7 @@ class ChatServerGUI(QWidget):
                     except Exception as e:
                         print(f"Error notifying client during server stop: {e}")
 
-                # Clear all rooms and client mappings
+                
                 rooms.clear()
                 client_room_map.clear()
 
